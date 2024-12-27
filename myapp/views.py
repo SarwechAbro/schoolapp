@@ -1,6 +1,8 @@
 from .models import Teacher, Student, Class, Course, Chapter, Lecture
 from .serializers import CourseSerializer , TeacherSerializer, StudentSerializer, ClassSerializer, ChapterSerializer, LectureSerializer
-from rest_framework.generics import generics
+from rest_framework import generics
+
+
 
 
 
@@ -10,7 +12,9 @@ class TeacherAPI(generics.RetrieveAPIView, generics.CreateAPIView, generics.Upda
     queryset = Teacher.objects.all()
     serializer_class = TeacherSerializer
     lookup_field = 'pk'
+  
 
+  
     def retrieve(self, request, *args, **kwargs):
         return super().retrieve(request, *args, **kwargs)
 
@@ -18,7 +22,6 @@ class TeacherAPI(generics.RetrieveAPIView, generics.CreateAPIView, generics.Upda
         return super().create(request, *args, **kwargs)
 
     def partial_update(self, request, *args, **kwargs):
-        
         return super().partial_update(request, *args, **kwargs)
 
    
@@ -31,6 +34,8 @@ class TeacherAPI(generics.RetrieveAPIView, generics.CreateAPIView, generics.Upda
 class TeacherLRViewAPI(generics.ListAPIView , generics.RetrieveAPIView):
     queryset = Teacher.objects.all()
     serializer_class = TeacherSerializer
+   
+
 
     def get(self, request, *args, **kwargs):
         if 'pk' in kwargs:
@@ -42,6 +47,7 @@ class StudentAPI(generics.RetrieveAPIView, generics.CreateAPIView, generics.Upda
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
     lookup_field = 'pk'
+   
 
     def retrieve(self, request, *args, **kwargs):
         return super().retrieve(request, *args, **kwargs)
@@ -62,6 +68,7 @@ class StudentAPI(generics.RetrieveAPIView, generics.CreateAPIView, generics.Upda
 class StudentLRViewAPI(generics.ListAPIView , generics.RetrieveAPIView):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
+   
 
     def get(self, request, *args, **kwargs):
         if 'pk' in kwargs:
@@ -75,6 +82,7 @@ class ClassAPI(generics.RetrieveAPIView, generics.CreateAPIView, generics.Update
     queryset = Class.objects.all()
     serializer_class = ClassSerializer
     lookup_field = 'pk'
+   
 
     def retrieve(self, request, *args, **kwargs):
         return super().retrieve(request, *args, **kwargs)

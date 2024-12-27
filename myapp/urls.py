@@ -26,5 +26,4 @@ urlpatterns = [
     path('courseapiview/', views.CourseLRViewAPI.as_view(), name='courseapiview'),
     path('courseapiview/<int:pk>/', views.CourseLRViewAPI.as_view(), name='courseapiview'),
     path('courseapi/<int:pk>/', views.CourseAPI.as_view(), name='courseapi'),
-
 ]

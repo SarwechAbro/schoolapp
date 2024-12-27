@@ -1,5 +1,6 @@
 from pathlib import Path
 import os
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -17,9 +18,11 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+
 # Application definition
 
 INSTALLED_APPS = [
+    'rest_framework_simplejwt',
     'rest_framework',
     'jazzmin',
     'myapp',
@@ -30,6 +33,25 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
+
+#Application Authentication
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=360),
+    'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=720),
+    'SLIDING_TOKEN_LIFETIME': timedelta(days=360),
+    'SLIDING_TOKEN_REFRESH_LIFETIME_LATE_USER': timedelta(days=360),
+    'SLIDING_TOKEN_LIFETIME_LATE_USER': timedelta(days=360),
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -108,7 +130,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
-MEDIA_URL = 'media/'
+MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
