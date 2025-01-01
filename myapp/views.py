@@ -13,8 +13,6 @@ class TeacherAPI(generics.RetrieveAPIView, generics.CreateAPIView, generics.Upda
     serializer_class = TeacherSerializer
     lookup_field = 'pk'
   
-
-  
     def retrieve(self, request, *args, **kwargs):
         return super().retrieve(request, *args, **kwargs)
 
@@ -35,12 +33,11 @@ class TeacherLRViewAPI(generics.ListAPIView , generics.RetrieveAPIView):
     queryset = Teacher.objects.all()
     serializer_class = TeacherSerializer
    
-
-
     def get(self, request, *args, **kwargs):
         if 'pk' in kwargs:
             return self.retrieve(request, *args, **kwargs)
         return self.list(request, *args, **kwargs)  
+
 
 #Student APIs
 class StudentAPI(generics.RetrieveAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.DestroyAPIView):
@@ -76,7 +73,6 @@ class StudentLRViewAPI(generics.ListAPIView , generics.RetrieveAPIView):
         return self.list(request, *args, **kwargs)  
     
 
-
 #Class APIs
 class ClassAPI(generics.RetrieveAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.DestroyAPIView):
     queryset = Class.objects.all()
@@ -108,7 +104,6 @@ class ClassLRViewAPI(generics.ListAPIView , generics.RetrieveAPIView):
         if 'pk' in kwargs:
             return self.retrieve(request, *args, **kwargs)
         return self.list(request, *args, **kwargs)  
-
 
 
 #Course APIs
