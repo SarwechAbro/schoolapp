@@ -5,7 +5,7 @@ from rest_framework import generics
 
 
 
-
+#just comment
 
 #Teacher APIs
 class TeacherAPI(generics.RetrieveAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.DestroyAPIView):
